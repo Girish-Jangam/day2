@@ -1,0 +1,66 @@
+<div class="reviews-section container mt-5">
+    <h2 class="text-center">Customer Reviews</h2>
+  
+    <!-- Sort Options -->
+    <div class="sort-options mb-3">
+      <button class="btn btn-secondary mr-2" (click)="sortReviews('place')">Sort by Place</button>
+      <button class="btn btn-secondary mr-2" (click)="sortReviews('rating')">Sort by Rating</button>
+    </div>
+  
+    <!-- Scroll Buttons -->
+    <div class="scroll-buttons">
+      <button class="btn btn-primary left" (click)="scrollLeft()">←</button>
+      <button class="btn btn-primary right" (click)="scrollRight()">→</button>
+    </div>
+  
+    <!-- Display Reviews -->
+    <div class="reviews-container" #reviewsContainer>
+      <div *ngFor="let review of reviews" class="review-card" (click)="viewReviewDetail(review.id)">
+        <div class="review-header">
+          <h5>{{ review.user }}</h5>
+          <div class="rating">
+            <span *ngFor="let i of [].constructor(review.rating); let idx = index" class="star">★</span>
+          </div>
+        </div>
+        <p class="review-comment">{{ review.comment }}</p>
+      </div>
+    </div>
+  
+    <!-- Button to open review form -->
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="openReviewForm()">Write a Review</button>
+    </div>
+  
+    <!-- Review Form Modal -->
+    <div class="modal" tabindex="-1" [ngClass]="{'show': showReviewForm}"
+         [style.display]="showReviewForm ? 'block' : 'none'">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Write a Review</h5>
+            <button type="button" class="btn-close" (click)="closeReviewForm()">×</button>
+          </div>
+          <div class="modal-body">
+            <!-- Reactive Form for Review -->
+            <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+              <div class="mb-3">
+                <label for="userName" class="form-label">Name</label>
+                <input type="text" id="userName" class="form-control" formControlName="user" />
+              </div>
+              <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <select id="rating" class="form-control" formControlName="rating">
+                  <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }} Star</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="comment" class="form-label">Comment</label>
+                <textarea id="comment" class="form-control" formControlName="comment" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success" [disabled]="!reviewForm.valid">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,51 @@
+.navbar {
+    height: 70px; /* Set a consistent height */
+    /* position: fixed; Fix the navbar at the top */
+    top: 0;
+    width: 100%;
+    /*background: rgba(255, 255, 255, 0.5) !important;  Transparent background */
+    /*z-index: 1000;  Ensure the navbar is above other content */
+    /* border: none !important; */
+    /* box-shadow: none !important; */
+    /*outline: none !important;  Remove any outlines */
+  }
+
+
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%; /* Make the container take full height */
+    /*outline: none;  Remove any outlines */
+  }
+
+  .navbar-brand {
+    margin: 0;
+/*    outline: none;  Remove any outlines */
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    /*outline: none;  Remove any outlines */
+  }
+
+  .nav-link {
+    margin-left: 1rem;
+    /*outline: none;  Remove any outlines */
+  }
+
+  /* background image setting */
+  body{
+    background-image: url("../assets/TravelImage3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}

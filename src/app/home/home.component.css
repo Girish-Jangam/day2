@@ -1,0 +1,269 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  /* Keeps navbar fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Dark background with some opacity */
+  color: white;
+  z-index: 1000;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* Optional: shadow for contrast */
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 61vh;
+  /* Height adjusted for the hero section */
+  margin-top: 40px;
+  /* Space to prevent overlap with navbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Hero content */
+.hero-content {
+  z-index: 2;
+  /* Ensure the hero content text is above the images */
+}
+
+/* Hover Effect on Hero Image (Zoom in effect) */
+.carousel-slide:hover img {
+  transform: scale(1.1);
+  /* Zoom in effect on hover */
+}
+
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: white;
+  /* Ensure text is white for contrast */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  /* Added shadow for text to stand out */
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  color: white;
+  /* White text color for contrast */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  /* Added shadow to paragraph text */
+}
+
+
+/* Image Carousel (Hero Banner) */
+.carousel {
+  position: absolute;
+  margin-top: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  animation: scrollCarousel 20s infinite linear;
+  /* Scrolling effect */
+  height: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  transform: scale(1.2);
+  /* Adjust the size of images */
+  transition: transform 0.33s ease-in-out;
+  /* Smooth zoom effect */
+  filter: brightness(85%);
+}
+
+/* Featured Destinations Section */
+.featured-destinations {
+  padding: 50px 20px;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  margin-top: 60px;
+}
+
+/* Destination Card */
+.destination-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+}
+
+.card-content p {
+  font-size: 1rem;
+}
+
+.card-content a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.card-content a:hover {
+  text-decoration: underline;
+}
+
+/* Add this to your CSS to show the active slide */
+.carousel-slide {
+  display: none;
+}
+
+.carousel-slide.active {
+  display: block;
+}
+
+
+.carousel-slide .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Dark background for better text visibility */
+  z-index: 1;
+}
+
+.featured-destinations h2 {
+ 
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  /* Dark color for better contrast */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.featured-destinations {
+  padding: 50px 20px;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  background-color: #f1f1f1;
+  /* Light background for contrast */
+}
+
+/* Destination Grid Layout */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(427px, 0fr));
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.destination-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.destination-card:hover {
+  transform: scale(1.05);
+  /* Slight scale effect on hover */
+}
+
+/* Image Container with Background */
+.image-container {
+  height: 250px;
+  /* Height of the image container */
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Dark overlay to make text stand out */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.destination-card:hover .overlay {
+  opacity: 1;
+  /* Show overlay on hover */
+}
+
+.summary {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .destination-card {
+    height: 200px;
+    /* Adjust card height on smaller screens */
+  }
+
+  .summary {
+    font-size: 1rem;
+    /* Adjust font size for smaller screens */
+  }
+}

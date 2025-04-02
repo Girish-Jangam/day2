@@ -1,0 +1,77 @@
+.container {
+    margin-top: 50px; /* Optional: Keep if you want extra margin */
+    background-color: #f8f9fa; /* Light background for the entire container */
+    padding: 2rem 0; /* Padding for top and bottom */
+  }
+  
+  .row-cols-1 .col {
+    flex-basis: 100%;
+  }
+  
+  .row-cols-md-2 .col {
+    flex-basis: calc(50% - 1.5rem);
+  }
+  
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    box-shadow: 0 6px 12px rgba(200, 35, 51, 0.3);
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .loading-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
