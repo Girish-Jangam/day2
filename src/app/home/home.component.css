@@ -9,49 +9,34 @@ body {
 /* Navbar Styling */
 .navbar {
   position: fixed;
-  /* Keeps navbar fixed at the top */
   top: 0;
   left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  /* Dark background with some opacity */
   color: white;
   z-index: 1000;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  /* Optional: shadow for contrast */
 }
 
 /* Hero Section */
 .hero {
   position: relative;
   height: 61vh;
-  /* Height adjusted for the hero section */
   margin-top: 40px;
-  /* Space to prevent overlap with navbar */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
-
   z-index: 2;
   overflow: hidden;
 }
 
-/* Hero content */
 .hero-content {
   z-index: 2;
-  /* Ensure the hero content text is above the images */
 }
-
-/* Hover Effect on Hero Image (Zoom in effect) */
-.carousel-slide:hover img {
-  transform: scale(1.1);
-  /* Zoom in effect on hover */
-}
-
 
 .hero-content h1 {
   font-size: 3rem;
@@ -59,21 +44,16 @@ body {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: white;
-  /* Ensure text is white for contrast */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  /* Added shadow for text to stand out */
 }
 
 .hero-content p {
   font-size: 1.2rem;
   opacity: 0.9;
   color: white;
-  /* White text color for contrast */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  /* Added shadow to paragraph text */
 }
-
 
 /* Image Carousel (Hero Banner) */
 .carousel {
@@ -90,7 +70,6 @@ body {
 .carousel-container {
   display: flex;
   animation: scrollCarousel 20s infinite linear;
-  /* Scrolling effect */
   height: 100%;
 }
 
@@ -105,10 +84,114 @@ body {
   height: 70%;
   object-fit: cover;
   transform: scale(1.2);
-  /* Adjust the size of images */
   transition: transform 0.33s ease-in-out;
-  /* Smooth zoom effect */
   filter: brightness(85%);
+}
+
+.carousel-slide:hover img {
+  transform: scale(1.1);
+}
+
+.carousel-slide {
+  display: none;
+}
+
+.carousel-slide.active {
+  display: block;
+}
+
+.carousel-slide .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Search Bar Container */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  /* background-color: rgba(255, 255, 255, 0.9); */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 2px solid #007bff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  /* background-color: rgba(255, 255, 255, 0.7); */
+}
+
+.search-bar input:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Suggestions Dropdown */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.suggestions-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f1f1;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.suggestions-list li:hover {
+  background-color: #f1f1f1;
+}
+
+/* No Results Found Message */
+.no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(246, 150, 150, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  color: #070707;
 }
 
 /* Featured Destinations Section */
@@ -118,82 +201,21 @@ body {
   z-index: 10;
   position: relative;
   margin-top: 60px;
-}
-
-/* Destination Card */
-.destination-card {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-}
-
-.card-content h3 {
-  font-size: 1.5rem;
-}
-
-.card-content p {
-  font-size: 1rem;
-}
-
-.card-content a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-}
-
-.card-content a:hover {
-  text-decoration: underline;
-}
-
-/* Add this to your CSS to show the active slide */
-.carousel-slide {
-  display: none;
-}
-
-.carousel-slide.active {
-  display: block;
-}
-
-
-.carousel-slide .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  /* Dark background for better text visibility */
-  z-index: 1;
+  background-color: #f1f1f1;
 }
 
 .featured-destinations h2 {
- 
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
-  /* Dark color for better contrast */
   margin-bottom: 30px;
   text-transform: uppercase;
-}
-
-.featured-destinations {
-  padding: 50px 20px;
-  text-align: center;
-  z-index: 10;
-  position: relative;
-  background-color: #f1f1f1;
-  /* Light background for contrast */
 }
 
 /* Destination Grid Layout */
 .destinations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(427px, 0fr));
+  grid-template-columns: repeat(auto-fill, minmax(427px, 1fr));
   gap: 20px;
   margin-top: 30px;
   justify-content: center;
@@ -211,13 +233,11 @@ body {
 
 .destination-card:hover {
   transform: scale(1.05);
-  /* Slight scale effect on hover */
 }
 
 /* Image Container with Background */
 .image-container {
   height: 250px;
-  /* Height of the image container */
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -232,7 +252,6 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  /* Dark overlay to make text stand out */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,7 +264,6 @@ body {
 
 .destination-card:hover .overlay {
   opacity: 1;
-  /* Show overlay on hover */
 }
 
 .summary {
@@ -259,11 +277,9 @@ body {
 @media (max-width: 768px) {
   .destination-card {
     height: 200px;
-    /* Adjust card height on smaller screens */
   }
 
   .summary {
     font-size: 1rem;
-    /* Adjust font size for smaller screens */
   }
 }

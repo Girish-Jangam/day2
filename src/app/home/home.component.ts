@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DestinationService } from '../destination.service';
 import { SharedService } from '../shared.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  destinations$: Observable<any[]> | undefined;
+export class HomeComponent implements OnInit, OnDestroy {
+  destinations$: Observable<any[]> = this.sharedService.destinations$;
+  filteredDestinations$ = this.sharedService.filteredDestinations$;
+  searchQuery$ = this.sharedService.searchQuery$;
+  searchQuery: string = '';
+
   slides: string[] = [
     '../../assets/IMAGES/BALI/balihotel5.jpg',
     '../../assets/IMAGES/Switzerland/chapel-bridge-lucerne.jpg',
@@ -23,17 +27,28 @@ export class HomeComponent implements OnInit {
   currentBgColor: string = '#007bff';
   bgColors: string[] = ['#007bff', '#ff6347', '#32cd32'];
   intervalId: any;
+  errorMessage: string = '';
 
   constructor(
     private destinationService: DestinationService,
     private sharedService: SharedService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.destinations$ = this.sharedService.filteredDestinations$;
     this.startCarousel();
     this.changeSearchBarBackground();
+
+    // Subscribe to searchQuery$
+    this.searchQuery$.subscribe(query => {
+      this.searchQuery = query;  // Update local searchQuery variable
+      console.log("Search query from sharedService:", query);
+    });
+
+    // Log filtered destinations
+    this.filteredDestinations$.subscribe(destinations => {
+      console.log("Filtered destinations:", destinations);
+    });
   }
 
   // Carousel logic
@@ -62,12 +77,13 @@ export class HomeComponent implements OnInit {
   }
 
   // Search functionality
-  search() {
-    this.sharedService.setSearchQuery(this.searchTerm);
+  onSearch(query: string): void {
+    console.log("Search query entered:", query);  // Log entered query
+    this.sharedService.setSearchQuery(query);
   }
 
-  navigateToDestination(id: string) {
-    this.router.navigate(['/destination', id]);
+  navigateToDestination(id: string): void {
+    this.router.navigate([`/destinations/${id}`]);
   }
 
   // Background color animation
@@ -76,7 +92,17 @@ export class HomeComponent implements OnInit {
       this.currentBgColor = this.bgColors[
         Math.floor(Math.random() * this.bgColors.length)
       ];
+      console.log("Current background color:", this.currentBgColor);  // Log background color
     }, 3000);
+  }
+
+  // Methods to handle conditions for suggestions and no results
+  shouldShowSuggestions(filteredDestinations: any[], searchQuery: string): boolean {
+    return filteredDestinations.length > 0 && searchQuery.trim() !== '';
+  }
+
+  shouldShowNoResults(filteredDestinations: any[], searchQuery: string): boolean {
+    return filteredDestinations.length === 0 && searchQuery.trim() !== '';
   }
 
   ngOnDestroy() {

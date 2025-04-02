@@ -32,9 +32,10 @@ export class SharedService {
   }
 
   private fetchDestinations(): void {
+    // Assuming this method fetches all destinations from the backend
     this.destinationService.searchDestination().subscribe(data => {
       this.destinationsSubject.next(data);
-      this.filterDestinations(this.searchQuerySubject.value);
+      this.filterDestinations(this.searchQuerySubject.value); // Filter results based on current query
     });
   }
 

@@ -7,6 +7,9 @@ import { response } from 'express';
   providedIn: 'root'
 })
 export class DestinationService {
+  searchDestinations(searchQuery: any) {
+    throw new Error('Method not implemented.');
+  }
   private reviewSubject= new BehaviorSubject<any[]>([]);
   reviews$=this.reviewSubject.asObservable();
   baseUrl = 'http://localhost:3000/api/v1/destinationGuides';
