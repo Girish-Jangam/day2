@@ -71,7 +71,10 @@ export class TripItineraryService {
 
   // User Itineraries
   getUserItineraries(): Observable<UserItinerary[]> {
-    return this.http.get<UserItinerary[]>(`${this.apiUrl}/userItineraries`);
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<UserItinerary[]>(`${this.apiUrl}/userItineraries`,{headers});
   }
 
   addUserItinerary(itinerary: UserItinerary): Observable<UserItinerary> {
@@ -91,7 +94,10 @@ export class TripItineraryService {
   }
 
   deleteUserItinerary(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/userItenarary/${id}`);
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete<void>(`${this.apiUrl}/userItineraries/${id}`,{headers});
   }
 
   // Destination Details

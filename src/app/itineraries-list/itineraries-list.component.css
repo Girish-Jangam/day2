@@ -1,77 +1,121 @@
+/* Itineraries List Styles */
 .container {
-    margin-top: 50px; /* Optional: Keep if you want extra margin */
-    background-color: #f8f9fa; /* Light background for the entire container */
-    padding: 2rem 0; /* Padding for top and bottom */
-  }
-  
-  .row-cols-1 .col {
-    flex-basis: 100%;
-  }
-  
-  .row-cols-md-2 .col {
-    flex-basis: calc(50% - 1.5rem);
-  }
-  
-  .card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-body {
-    padding: 2rem;
-  }
-  
-  .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    width: 100%;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .btn-danger:hover {
-    background-color: #c82333;
-    box-shadow: 0 6px 12px rgba(200, 35, 51, 0.3);
-  }
-  
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .loading-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-  }
-  
-  .spinner-border {
-    width: 3rem;
-    height: 3rem;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-    font-weight: bold;
-    text-align: center;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.loading-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.alert.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Login Popup Styles */
+.login-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popup-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+  background-color: #0056b3;
+}
+
+/* Itinerary Card Styles */
+.itinerary-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+  position: relative;
+}
+
+.itinerary-card:hover {
+  transform: scale(1.05);
+}
+
+.itinerary-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.itinerary-card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.itinerary-card .card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itinerary-card .card-actions button {
+  margin-left: 10px;
+}
+
+.itinerary-card .card-actions a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.itinerary-card .card-actions a:hover {
+  text-decoration: underline;
+}
+
+.itinerary-card .card-actions button.btn-danger {
+  background-color: #dc3545;
+}
+
+.itinerary-card .card-actions button.btn-danger:hover {
+  background-color: #c82333;
+}

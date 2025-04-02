@@ -9,6 +9,8 @@ import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { ItinerariesListComponent } from './itineraries-list/itineraries-list.component';
+import { TripItenraryComponent } from './trip-itenrary/trip-itenrary.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,12 @@ const routes: Routes = [
     },  // Route for Create Group page
   {
      path: 'join-trip-groups', component: JoinGroupComponent 
+    },
+    {
+      path:'plan-trip', component:TripItenraryComponent
+    },
+    {
+      path:'user-itenrary', component:ItinerariesListComponent
     },
     { 
       path: 'chat/:id', component: ChatComponent 

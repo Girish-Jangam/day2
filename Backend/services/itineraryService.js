@@ -55,10 +55,42 @@ const getDestinationDetails = async (req, res) => {
   }
 };
 
+
+const getUserItineraries = async (req, res) => {
+  try {
+    const userId = req.user.id; // Assuming req.user.id contains the authenticated user's ID
+    const userItineraries = await UserItinerary.find({ userId: userId });
+    res.status(200).json(userItineraries);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+const deleteUserItinerary = async (req, res) => {
+  try {
+    const userId = req.user.id; // Assuming req.user.id contains the authenticated user's ID
+    const itineraryId = req.params.id;
+
+    // Find the itinerary and ensure it belongs to the authenticated user
+    const itinerary = await UserItinerary.findOneAndDelete({ userId: userId, _id: itineraryId });
+    if (!itinerary) {
+      return res.status(404).json({ error: "Itinerary not found" });
+    }
+
+    res.status(200).json({ message: "Itinerary deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 module.exports = {
   getTripItineraries,
   getDestinationGuides,
   getUserLogin,
   addUserItinerary,
   getDestinationDetails,
+  getUserItineraries,
+  deleteUserItinerary,
 };
+
+
