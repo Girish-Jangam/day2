@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationService } from '../destination.service';
 import { interval } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 interface Review {
   user: string;
@@ -30,7 +31,7 @@ export class DestinationDetailComponent implements OnInit, OnDestroy {
   destination?: DestinationDetails;
   tripid: string = '';
   photos: string[] = [];
-  reviewForm: FormGroup;
+  reviewForm!: FormGroup;
   reviews: Review[] = []; // Array for storing reviews
   newReview: Review = { user: '', rating: 5, comment: '' }; // For capturing the new review
   selectedImage: string | null = null;
@@ -39,25 +40,43 @@ export class DestinationDetailComponent implements OnInit, OnDestroy {
   culture: any="";  // Add culture
   intervalId: any;
   currentIndex: number = 0;
+  userName:string="";
   showReviewForm: boolean = false; // Control visibility of review form
 
   constructor(
     private route: ActivatedRoute,
     private destinationService: DestinationService,
-    private fb: FormBuilder 
+    private fb: FormBuilder ,
+    private auth:AuthService,
+    private cdRef:ChangeDetectorRef
   ) {
-    this.reviewForm = this.fb.group({
-      user: [{ value: 'user123', disabled: true }, Validators.required], // Set the username to be disabled
-      rating: [5, Validators.required], // Rating field (default value 5)
-      comment: ['', Validators.required], // Comment field (required)
-    });
+    
   }
 
   ngOnInit() {
+    if(this.auth.isAuthenticated()){
+      this.auth.getUserData().subscribe(data=>{
+        this.userName=data.username;
+       // console.log(+"user---------------------------------"+this.userName);
+        this.reviewForm.patchValue({
+          user:this.userName
+        })
+        
+      })}
+
     this.getAllData();
     this.getProductDetails(this.tripid);
     this.searchDestination();
     this.startAutoScroll();
+
+    
+
+      this.reviewForm = this.fb.group({
+        user: [{ value: this.userName, disabled: true }, Validators.required], // Set the username to be disabled
+        rating: [5, Validators.required], // Rating field (default value 5)
+        comment: ['', Validators.required], // Comment field (required)
+      });
+
   }
 
  
@@ -73,26 +92,37 @@ export class DestinationDetailComponent implements OnInit, OnDestroy {
       this.destination = res;
       this.reviews = res.reviews || []; // Assign reviews from the API response
       
-      console.log('dkjfhskfkdsflkdsf'+this.destination);
+      //console.log('dkjfhskfkdsflkdsf'+this.destination);
     });
   }
 
   openReviewForm() {
+    if(this.auth.isAuthenticated()){
     this.showReviewForm = true;
-  }
+  }else {
+    alert('Please login to write your reviews.');
+  }}
 
   closeReviewForm() {
     this.showReviewForm = false;
+    this.reviewForm.reset({ user: this.userName, rating: 5, comment: '' });
   }
 
+
   submitReview() {
-    if (this.newReview.user && this.newReview.comment && this.newReview.rating) {
-      // Simulate sending the review to an API
-      this.destinationService.submitReview(this.tripid, this.newReview).subscribe((newReview) => {
-        this.reviews.push(newReview); // Add the new review to the list
-        this.newReview = { user: '', rating: 5, comment: '' }; // Reset the form
-        this.closeReviewForm(); // Close the review form
-      });
+    if (this.reviewForm.valid) {
+    
+      const newReview = {...this.reviewForm.getRawValue()};
+      this.destinationService.submitReview(this.tripid, newReview).subscribe(
+        (data) => {
+          this.reviews.push(data);
+          
+          this.closeReviewForm();
+        },
+        (error) => {
+          console.error('Error submitting review:', error);
+        }
+      );
     }
   }
   openLightbox(){

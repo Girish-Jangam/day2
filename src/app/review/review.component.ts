@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DestinationService } from '../destination.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -17,7 +17,9 @@ export class ReviewComponent implements OnInit {
   comment:string[]=[]
   rating:any[]=[];
   userName:string="";
+  showbutton :boolean =false;
   @ViewChild('reviewsContainer') reviewsContainer!: ElementRef;
+
  
   constructor(
     private fb: FormBuilder,
@@ -43,10 +45,21 @@ export class ReviewComponent implements OnInit {
 
     
     this.reviewForm = this.fb.group({
-      user: [this.userName, [Validators.required]],
+    user: [{value:this.userName, disabled:true}, [Validators.required]],
       rating: [5, Validators.required],
       comment: ['', Validators.required]
     });
+
+
+
+
+    this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            // Show navbar with search only on '/' or exactly '/destinations' (not '/destinations/:id')
+            this.showbutton = event.urlAfterRedirects === '/' || event.urlAfterRedirects === '/destinations';
+          }
+        });
+     
 
    
   }
@@ -74,7 +87,7 @@ export class ReviewComponent implements OnInit {
   }
   closeReviewForm() {
     this.showReviewForm = false;
-    this.reviewForm.reset({ user: '', rating: 5, comment: '' });
+    this.reviewForm.reset({ user: this.userName, rating: 5, comment: '' });
   }
 
   submitReview() {

@@ -1,29 +1,62 @@
+
+/* Style for the card displaying each review */
+.review-card {
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.review-comment {
+  font-size: 1rem;
+  color: #555;
+}
+
+.rating .star {
+  color: gold;
+  font-size: 1.2rem;
+}
+
+
 /* Reviews Section */
 .reviews-section {
-    position: relative;
-    padding: 0 20px; /* Optional, to add some space at the edges */
-  }
+  position: relative;
+  padding: 0 20px; /* Optional, to add some space at the edges */
+}
+
+.reviews-container {
+  display: flex;
+  overflow-x: hidden; /* Hides the horizontal scrollbar */
+  gap: 20px;
+  width: 100%; /* Ensures the container fits within its parent */
+  scroll-behavior: smooth;
   
-  .reviews-container {
-    display: flex;
-    overflow-x: auto; /* Allows horizontal scrolling */
-    gap: 20px;
-    width: 100%; /* Ensures the container fits within its parent */
-    scroll-behavior: smooth;
-  }
-  
-  .review-card {
-    flex: 0 0 25%; /* Adjust the width as needed (e.g., 25% means 4 cards per row) */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background: white;
-    margin-bottom: 20px; /* Adds spacing between review cards */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
+}
+.review-card {
+  flex: 0 0 25%; /* Adjust the width as needed (e.g., 25% means 4 cards per row) */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: white;
+  margin-bottom: 20px; /* Adds spacing between review cards */
+}
+
+
   .review-card:hover {
     transform: scale(1.02);
   }

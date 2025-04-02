@@ -22,40 +22,8 @@
     </div>
   
     <!-- Button to open review form -->
-    <div class="text-center">
+    <div class="text-center" *ngIf="showbutton">
       <button class="btn btn-primary" (click)="openReviewForm()">Write a Review</button>
     </div>
   
-    <!-- Review Form Modal -->
-    <div class="modal" tabindex="-1" [ngClass]="{'show': showReviewForm}"
-         [style.display]="showReviewForm ? 'block' : 'none'">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Write a Review</h5>
-            <button type="button" class="btn-close" (click)="closeReviewForm()">×</button>
-          </div>
-          <div class="modal-body">
-            <!-- Reactive Form for Review -->
-            <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
-              <div class="mb-3">
-                <label for="user" class="form-label">Name</label>
-                <input type="text" id="user" class="form-control" formControlName="user" name="user"/>
-              </div>
-              <div class="mb-3">
-                <label for="rating" class="form-label">Rating</label>
-                <select id="rating" class="form-control" formControlName="rating">
-                  <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }} Star</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="comment" class="form-label">Comment</label>
-                <textarea id="comment" class="form-control" formControlName="comment" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-success" [disabled]="!reviewForm.valid">Submit Review</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    

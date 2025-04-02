@@ -220,32 +220,32 @@ const seedData = async () => {
       description: "Detailed information about Bali including history, culture, attractions, and recommendations.",
       reviews: [
         {
-          user: "user123",
+          user: "Rishabh",
           rating: 5,
           comment: "Amazing guide, helped me plan my trip perfectly!"
         },
         {
-          user: "user124",
+          user: "Daju",
           rating: 2,
           comment: "Not great, but okay."
         },
         {
-          user: "user123",
+          user: "Laxmi",
           rating: 5,
           comment: "Amazing guide, helped me plan my trip perfectly!"
         },
         {
-          user: "user124",
+          user: "Girish",
           rating: 2,
           comment: "Not great, but okay."
         },
         {
-          user: "user123",
+          user: "Mayank",
           rating: 5,
           comment: "Amazing guide, helped me plan my trip perfectly!"
         },
         {
-          user: "user124",
+          user: "Ashok",
           rating: 2,
           comment: "Not great, but okay."
         }
@@ -257,7 +257,7 @@ const seedData = async () => {
       description: "Paris, often called the City of Lights, is a premier travel destination renowned for its iconic landmarks like the Eiffel Tower, the Louvre Museum, and Notre Dame Cathedral, alongside its rich history, vibrant art scene, elegant fashion, and world-class cuisine, making it a captivating blend of romance, culture, and architectural beauty, particularly alluring for those seeking a sophisticated European experience.",
       reviews: [
         {
-          user: "user123",
+          user: "Arpit",
           rating: 4,
           comment: "Amazing guide, helped me plan my trip perfectly!"
         }
@@ -269,7 +269,7 @@ const seedData = async () => {
       description: "Explore the breathtaking landscapes of Switzerland.",
       reviews: [
         {
-          user: "user125",
+          user: "Ashok",
           rating: 5,
           comment: "Absolutely stunning!"
         }
@@ -281,7 +281,7 @@ const seedData = async () => {
       description: "Experience the diversity of India, from the Himalayas to the beaches.",
       reviews: [
         {
-          user: "user126",
+          user: "Arpit",
           rating: 3,
           comment: "Good, but could be better."
         }
@@ -293,7 +293,7 @@ const seedData = async () => {
       description: "Uncover the rich history and vibrant culture of London.",
       reviews: [
         {
-          user: "user127",
+          user: "Girish",
           rating: 5,
           comment: "Excellent guide!"
         }
