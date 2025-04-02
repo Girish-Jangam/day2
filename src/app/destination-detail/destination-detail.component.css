@@ -190,7 +190,8 @@ blockquote {
 }
 
 .card-body {
-  padding: 20px;
+  padding: 4px;
+  /* height: 10px; */
 }
 
 .review-header {

@@ -10,11 +10,11 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <!-- Background Below Navbar -->
-<div id="mainBody" [ngStyle]="{'background': 'url(../../assets/123-bg.jpg) no-repeat center center/cover fixed'}">
+<div id="mainBody" [ngStyle]="{'background': 'url(../../assets/TravelImage3.jpg) no-repeat center center/cover fixed'}">
 
   <div class="container-fluid text-center">
     <!-- Title -->
-    <h1 class="display-4 fw-bold text-dark">{{ destination?.title | uppercase}}</h1>
+    <h1 class="display-4 fw-bold text-warning">{{ destination?.title | uppercase}}</h1>
 
     <!-- Image Carousel -->
     <div class="scroll-container" (click)="stopAutoScroll(); openLightbox()">
@@ -35,7 +35,7 @@
 
 <!-- History Section -->
 <div class="card-body">
-  <div class="history-culture" style="background-color: cadetblue;">
+  <div class="history-culture" style="background-color: rgb(200, 244, 246);">
     <h2 style="text-align: center; font-style: italic;">History</h2>
     <p style="font-size: inherit;">{{ history }}</p>
   </div>
@@ -43,7 +43,7 @@
 
 <!-- Culture Section -->
 <div class="card-body">
-  <div class="culture-section" style="background-color: cadetblue;">
+  <div class="culture-section" style="background-color: rgb(200, 244, 246);">
     <h2 style="text-align: center;font-style: italic;">Culture</h2>
     <p style="font-style: inherit;">{{ culture }}</p>
   </div>
@@ -63,8 +63,6 @@
 
   </div>
 </div>
-
-
 
 <!-- Reviews Section -->
 <div class="reviews-section container mt-5">
