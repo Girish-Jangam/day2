@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DestinationService } from '../destination.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-review',
@@ -11,29 +12,51 @@ import { Router } from '@angular/router';
 export class ReviewComponent implements OnInit {
   reviews: any[] = [];
   showReviewForm: boolean = false;
-  reviewForm: FormGroup;
+  reviewForm!: FormGroup;
+  user:string[]=[];
+  comment:string[]=[]
+  rating:any[]=[];
+  userName:string="";
   @ViewChild('reviewsContainer') reviewsContainer!: ElementRef;
-
+ 
   constructor(
     private fb: FormBuilder,
     private destinationService: DestinationService,
-    private router: Router
+    private router: Router,
+    public auth:AuthService
   ) {
-    this.reviewForm = this.fb.group({
-      user: ['', Validators.required],
-      rating: [5, Validators.required],
-      comment: ['', Validators.required]
-    });
+    
+
   }
 
   ngOnInit() {
     this.fetchReviews();
+    if(this.auth.isAuthenticated()){
+      this.auth.getUserData().subscribe(data=>{
+        this.userName=data.username;
+        console.log(this.userName);
+        this.reviewForm.patchValue({
+          user:this.userName
+        })
+        
+      })}
+
+    
+    this.reviewForm = this.fb.group({
+      user: [this.userName, [Validators.required]],
+      rating: [5, Validators.required],
+      comment: ['', Validators.required]
+    });
+
+   
   }
 
   fetchReviews() {
     this.destinationService.getReviews().subscribe(
       (data) => {
-        this.reviews = data;
+        this.reviews = data.flat();        
+        console.log(this.user);
+        
       },
       (error) => {
         console.error('Error fetching reviews:', error);
@@ -42,9 +65,13 @@ export class ReviewComponent implements OnInit {
   }
 
   openReviewForm() {
+    if(this.auth.isAuthenticated()){
+      
     this.showReviewForm = true;
+  }else {
+    alert('Please login to write your reviews.');
   }
-
+  }
   closeReviewForm() {
     this.showReviewForm = false;
     this.reviewForm.reset({ user: '', rating: 5, comment: '' });
@@ -79,17 +106,7 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  sortReviews(sortBy: string) {
-    this.destinationService.getSortedReviews(sortBy).subscribe(
-      (data) => {
-        this.reviews = data;
-      },
-      (error) => {
-        console.error('Error sorting reviews:', error);
-      }
-    );
-  }
-
+ 
   viewReviewDetail(reviewId: string) {
     this.router.navigate(['/review', reviewId]);
   }

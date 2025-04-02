@@ -22,7 +22,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ItineraryCardComponent } from './itinerary-card/itinerary-card.component';
 import { ItinerariesListComponent } from './itineraries-list/itineraries-list.component';
 import { ReviewComponent } from './review/review.component';
-import { ReviewDetailComponent } from './review-detail/review-detail.component';
+// import { ReviewDetailComponent } from './review-detail/review-detail.component';
 
 
 
@@ -51,7 +51,7 @@ import { ReviewDetailComponent } from './review-detail/review-detail.component';
           ItineraryCardComponent,
           ItinerariesListComponent,
           ReviewComponent,
-          ReviewDetailComponent
+          // ReviewDetailComponent
   ],
   imports: [
     BrowserModule,

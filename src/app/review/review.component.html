@@ -1,12 +1,7 @@
 <div class="reviews-section container mt-5">
     <h2 class="text-center">Customer Reviews</h2>
   
-    <!-- Sort Options -->
-    <div class="sort-options mb-3">
-      <button class="btn btn-secondary mr-2" (click)="sortReviews('place')">Sort by Place</button>
-      <button class="btn btn-secondary mr-2" (click)="sortReviews('rating')">Sort by Rating</button>
-    </div>
-  
+    
     <!-- Scroll Buttons -->
     <div class="scroll-buttons">
       <button class="btn btn-primary left" (click)="scrollLeft()">←</button>
@@ -44,8 +39,8 @@
             <!-- Reactive Form for Review -->
             <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
               <div class="mb-3">
-                <label for="userName" class="form-label">Name</label>
-                <input type="text" id="userName" class="form-control" formControlName="user" />
+                <label for="user" class="form-label">Name</label>
+                <input type="text" id="user" class="form-control" formControlName="user" name="user"/>
               </div>
               <div class="mb-3">
                 <label for="rating" class="form-label">Rating</label>

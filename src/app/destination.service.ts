@@ -25,14 +25,8 @@ export class DestinationService {
   }
 
   getReviews(): Observable<any[]> {
-    return this.http.get<any[]>(this.reviewsUrl);
+    return this.http.get<any[]>(this.baseUrl2);
   }
 
-  getReviewById(id: string): Observable<any> {
-    return this.http.get(`${this.reviewsUrl}/${id}`);
-  }
 
-  getSortedReviews(sortBy: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.reviewsUrl}?sortBy=${sortBy}`);
-  }
 }

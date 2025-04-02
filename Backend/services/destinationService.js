@@ -16,7 +16,7 @@ const getDestinationDetails = async (req, res) => {
   
   try {
     const destinationDetail = await DestinationDetail.findOne({id:id});
-    console.log(destinationDetail);
+    // console.log(destinationDetail);
     if (!destinationDetail) {
       return res.status(404).json({ error: "Destination not found" });
     }
@@ -25,6 +25,25 @@ const getDestinationDetails = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+
+const getDestinationDetailsAll = async (req, res) => {
+  
+  
+  try {
+    const destinationDetail = await DestinationDetail.find({},{_id:0,reviews:1});
+    console.log(destinationDetail);
+    if (!destinationDetail) {
+      return res.status(404).json({ error: "Destination not found" });
+    }
+    const reviews=destinationDetail.map(d=>d.reviews);
+    //console.log(reviews);
+    res.status(200).json(reviews);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 
 const submitReview = async (req, res) => {
   const { id } = req.params;
@@ -42,4 +61,4 @@ const submitReview = async (req, res) => {
   }
 };
 
-module.exports = { searchDestinationGuides, getDestinationDetails, submitReview };
+module.exports = { searchDestinationGuides, getDestinationDetails, submitReview , getDestinationDetailsAll};
