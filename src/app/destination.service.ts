@@ -24,11 +24,14 @@ export class DestinationService {
   }
 
   submitReview(destinationId: string, review: any): Observable<any> {
-    return this.http.put(`${this.reviewsUrl}/${destinationId}`, review).pipe(tap((response: any)=>{
-      this.reviewSubject.next(response.reviews);
-    }));
+    return this.http.put(`${this.reviewsUrl}/${destinationId}`, review).pipe(
+      tap((response: any) => {
+        // After submitting the review, emit the updated reviews list (assuming response.reviews contains the updated list)
+        this.reviewSubject.next(response.reviews);
+      })
+    );
   }
-
+  
   getReviews(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl2);
   }

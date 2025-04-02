@@ -36,12 +36,15 @@ export class DestinationDetailComponent implements OnInit, OnDestroy {
   newReview: Review = { user: '', rating: 5, comment: '' }; // For capturing the new review
   selectedImage: string | null = null;
   isPaused: boolean = false;
-  history: any="";  // Add history
-  culture: any="";  // Add culture
+  history: any="";  
+  culture: any="";  
   intervalId: any;
   currentIndex: number = 0;
   userName:string="";
-  showReviewForm: boolean = false; // Control visibility of review form
+  showReviewForm: boolean = false;
+  successMessage: string = ''; 
+  errorMessage: string = '';
+
 
   constructor(
     private route: ActivatedRoute,
@@ -116,10 +119,19 @@ export class DestinationDetailComponent implements OnInit, OnDestroy {
       this.destinationService.submitReview(this.tripid, newReview).subscribe(
         (data) => {
           this.reviews.push(data);
-          
+          this.successMessage = 'Review submitted successfully! Thank you for your feedback.';
+          this.errorMessage = ''; 
+
           this.closeReviewForm();
+          this.reviewForm.reset({ user: this.userName, rating: 5, comment: '' });
+          setTimeout(() => {
+            this.successMessage = '';
+          }, 5000);
+
         },
         (error) => {
+          this.errorMessage = 'Error submitting review. Please try again later.'; // Error message
+          this.successMessage = ''; // Clear any previous success messages
           console.error('Error submitting review:', error);
         }
       );

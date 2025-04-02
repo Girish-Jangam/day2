@@ -1,9 +1,20 @@
+
+
+<div *ngIf="successMessage" class="alert alert-success fixed-top mt-4 alert-dismissible fade show" role="alert">
+  {{ successMessage }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger fixed-top mt-4 alert-dismissible fade show" role="alert">
+  {{ errorMessage }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <!-- Background Below Navbar -->
 <div id="mainBody" [ngStyle]="{'background': 'url(../../assets/123-bg.jpg) no-repeat center center/cover fixed'}">
 
   <div class="container-fluid text-center">
     <!-- Title -->
-    <h1 class="display-4 fw-bold text-dark">{{ destination?.title }}</h1>
+    <h1 class="display-4 fw-bold text-dark">{{ destination?.title | uppercase}}</h1>
 
     <!-- Image Carousel -->
     <div class="scroll-container" (click)="stopAutoScroll(); openLightbox()">
@@ -17,7 +28,7 @@
     </div>
 
     <!-- Image Description -->
-    <p class="image-description">{{ destination?.description }}</p>
+    <p class="image-description">{{ destination?.description | titlecase }}</p>
   </div>
 </div>
 
@@ -67,9 +78,9 @@
 
   <!-- Display Reviews -->
   <div class="reviews-container offset-md-1">
-    <div *ngFor="let review of reviews" class="review-card" style="background-color: darkgrey;">
+    <div *ngFor="let review of reviews" class="review-card" style="background-color: #92c2a49f">
       <div class="review-header">
-        <h5>{{ review.user }}</h5>
+        <h5>{{ review.user | titlecase}}</h5>
         <div class="rating">
           <span *ngFor="let i of [].constructor(review.rating); let idx = index" class="star">★</span>
         </div>

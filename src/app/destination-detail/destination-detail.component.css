@@ -202,7 +202,7 @@ blockquote {
 
 .review-comment {
   font-size: 1rem;
-  color: #555;
+  color: #555555;
 }
 
 .rating .star {
@@ -264,6 +264,26 @@ blockquote {
 }
 
 
+/* Optional: Style the success and error alerts */
+.alert {
+  z-index: 1050; /* Ensure it appears on top */
+  margin-top: 20px; /* Adjust margin from top */
+  width: 100%;
+}
+
+/* Optional: Customize the success message */
+.alert-success {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+/* Optional: Customize the error message */
+.alert-danger {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
 
 
 
