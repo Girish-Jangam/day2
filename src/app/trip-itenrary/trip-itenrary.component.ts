@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TripItineraryService } from '../trip-itinerary.service';
+import { AuthService } from '../auth.service';
 
 // Define interfaces for better type safety
 interface TripItinerary {
@@ -33,8 +34,9 @@ export class TripItenraryComponent implements OnInit {
   selectedItinerary?: TripItinerary | null = null;
   successMessage: string = '';
   errorMessage: string = '';
+  userName: any;
 
-  constructor(private formBuilder: FormBuilder, private tripItineraryService: TripItineraryService) {
+  constructor(private formBuilder: FormBuilder, private tripItineraryService: TripItineraryService ,private authService:AuthService) {
     this.tripForm = this.formBuilder.group({
       itinerary: ['', Validators.required],
       startDate: ['', Validators.required],
@@ -46,6 +48,18 @@ export class TripItenraryComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+    if(this.authService.isAuthenticated()){
+      this.authService.getUserData().subscribe(data=>{
+        this.userName=data.username;
+       // console.log(+"user---------------------------------"+this.userName);
+       
+      })}else {
+        alert('Please login First.');
+      }
+
+
     this.tripItineraryService.getTripItineraries().subscribe(
       (data) => {
         this.tripItineraries = data;
@@ -56,6 +70,8 @@ export class TripItenraryComponent implements OnInit {
       }
     );
   }
+
+  
 
   onItineraryChange() {
     this.selectedItinerary = this.tripItineraries.find(
@@ -89,7 +105,7 @@ export class TripItenraryComponent implements OnInit {
         const duration = this.calculateDuration(startDate, endDate);
 
         const userItinerary: UserItinerary = {
-          id: '', // Generate a unique ID if needed
+          id: this.userName, 
           itineraryId: this.selectedItinerary.id,
           startDate: startDate,
           endDate: endDate,

@@ -70,11 +70,11 @@ export class TripItineraryService {
   }
 
   // User Itineraries
-  getUserItineraries(): Observable<UserItinerary[]> {
+  getUserItineraries(userName:string): Observable<UserItinerary[]> {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<UserItinerary[]>(`${this.apiUrl}/userItineraries`,{headers});
+    return this.http.get<UserItinerary[]>(`${this.apiUrl}/userItineraries/${userName}`,{headers});
   }
 
   addUserItinerary(itinerary: UserItinerary): Observable<UserItinerary> {
@@ -82,7 +82,7 @@ export class TripItineraryService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
     return this.http.post<UserItinerary>(
-      `${this.apiUrl}/userItenarary`, 
+      `${this.apiUrl}/userItineraries`, 
       itinerary, 
       { headers }
     );

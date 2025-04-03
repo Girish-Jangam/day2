@@ -13,6 +13,7 @@ export class ItinerariesListComponent implements OnInit {
   isLoading: boolean = true; // Track loading state
   errorMessage: string = '';
   isAuthenticated: boolean = false;
+  userName: string="";
 
   constructor(
     private tripItineraryService: TripItineraryService,
@@ -21,10 +22,21 @@ export class ItinerariesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated()){
+      this.authService.getUserData().subscribe(data=>{
+        this.userName=data.username+"";
+      //  console.log(+"user---------------------------------"+this.userName);
+       
+      })}
+      console.log("222222222222222222222222"+this.userName);
+      
+
+
     this.isAuthenticated = this.authService.isAuthenticated();
     if (this.isAuthenticated) {
+    
       this.isLoading = true; // Show loading indicator
-      this.tripItineraryService.getUserItineraries().subscribe(
+      this.tripItineraryService.getUserItineraries(this.userName).subscribe(
         (data: any[]) => {
           this.userItineraries = data;
           this.isLoading = false; // Hide loading indicator after data loads

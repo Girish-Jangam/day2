@@ -33,6 +33,8 @@ const getUserLogin = async (req, res) => {
 
 const addUserItinerary = async (req, res) => {
   const itineraryData = req.body;
+  // console.log(itineraryData);
+  
   try {
     const newItinerary = new UserItinerary(itineraryData);
     await newItinerary.save();
@@ -58,8 +60,13 @@ const getDestinationDetails = async (req, res) => {
 
 const getUserItineraries = async (req, res) => {
   try {
-    const userId = req.user.id; // Assuming req.user.id contains the authenticated user's ID
-    const userItineraries = await UserItinerary.find({ userId: userId });
+    
+    const userId = req.params.id; // Assuming req.user.id contains the authenticated user's ID
+    console.log(userId); 
+    
+    const userItineraries = await UserItinerary.find({ userId: userId },{_id:0});
+    console.log(userItineraries);
+    
     res.status(200).json(userItineraries);
   } catch (err) {
     res.status(500).json({ error: "Server error" });

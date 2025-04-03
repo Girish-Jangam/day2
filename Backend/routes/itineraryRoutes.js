@@ -16,7 +16,7 @@ router.get("/destinationGuides", getDestinationGuides);
 router.get("/userLogin", getUserLogin);
 router.post("/userItineraries", authenticate, addUserItinerary);
 router.get("/destinationDetails/:id", getDestinationDetails);
-router.get("/userItineraries", authenticate, getUserItineraries); // Ensure this route is protected
+router.get("/userItineraries/:id", authenticate, getUserItineraries); // Ensure this route is protected
 router.delete("/userItineraries/:id", authenticate, deleteUserItinerary); // Add this route
 
 module.exports = router;
